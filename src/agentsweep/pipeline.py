@@ -1443,6 +1443,8 @@ def _emit_json_payload(
     if output is not None:
         if _write_text(output, json.dumps(payload, indent=2) + "\n"):
             print(f"{count} finding(s) written to {output}", file=sys.stderr)
+        else:
+            return 1
         return code
 
     flood = count > JSON_FLOOD_LIMIT and getattr(sys.stdout, "isatty", lambda: False)()
